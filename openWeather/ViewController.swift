@@ -15,8 +15,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var tempLogo: UIImageView!
     @IBOutlet weak var tempDisplay: UILabel!
+    @IBOutlet weak var getWeatherButton: UIButton!
     
     var currentTemp = 0
+    var iconStr = ""
     
     var manager = CLLocationManager()
     var lat: String = ""
@@ -59,35 +61,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func pullRequest() {
         
         let requestURL: NSURL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&units=imperial&appid=05d30aadebf9cfe66f2ef8d47e04027e")!
-        print(requestURL)
         let urlRequest: NSURLRequest = NSURLRequest(URL: requestURL)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (data, response, error) -> Void in
             
             let httpResponse = response as! NSHTTPURLResponse
-            let codeStatus = httpResponse.statusCode
+            let statusCode = httpResponse.statusCode
             
-            if (codeStatus == 200) {
+            if (statusCode == 200) {
                 print("Everyone is fine, file downloaded successfully")
                 
                 do{
                     
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    
+
                     if let main = json["main"] as? [String: AnyObject] {
                         
                         if let temp = main["temp"] as? Int {
                             self.currentTemp = temp
                             
                             // TODO: Figure out weather icon path
+                            
                         }
+                    }
+                    if let weather = json["weather"] as? [[String: AnyObject]] {
+                        
+                        if let icon = weather[0]["icon"] as? String {
+                            self.iconStr = "http://openweathermap.org/img/w/\(icon).png"
+                        }
+                        print(self.iconStr)
                     }
                     
                 }
                 catch {
                     print("Error with Json: \(error)")
                 }
+            } else {
+                print("\(statusCode)")
             }
             
         }
@@ -142,9 +153,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             pullRequest()
             sleep(4)
         }
+//        pullRequest()
         checkForBackground(currentTemp)
         tempDisplay.textColor = UIColor.whiteColor()
         tempDisplay.text = "\(currentTemp)° Fahrenheit"
+        getWeatherButton.titleLabel?.textColor = UIColor.whiteColor()
+        loadImageFromURL(iconStr, view: tempLogo)
         
     }
     

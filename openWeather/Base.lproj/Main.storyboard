@@ -41,11 +41,19 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hUe-Fs-oSs" userLabel="tempLogo">
-                                <rect key="frame" x="180" y="113" width="240" height="128"/>
+                                <rect key="frame" x="275" y="113" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1ep-Gf-SBd"/>
                                     <constraint firstAttribute="height" constant="128" id="gu3-8y-06O"/>
+                                    <constraint firstAttribute="width" constant="50" id="pfY-U2-49G"/>
+                                    <constraint firstAttribute="height" constant="50" id="wFv-cG-OHY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1ep-Gf-SBd"/>
+                                        <exclude reference="gu3-8y-06O"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -55,16 +63,29 @@
                             <constraint firstItem="szT-gf-bts" firstAttribute="centerX" secondItem="hUe-Fs-oSs" secondAttribute="centerX" id="OyM-GU-g51"/>
                             <constraint firstItem="fJV-WL-AjK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="WRk-aK-GmD"/>
                             <constraint firstItem="NTN-Ap-028" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Yuo-ib-98q"/>
+                            <constraint firstItem="szT-gf-bts" firstAttribute="top" secondItem="hUe-Fs-oSs" secondAttribute="bottom" constant="122" id="cwx-ka-Wz2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fJV-WL-AjK" secondAttribute="trailing" constant="-20" id="dyW-lW-XDp"/>
                             <constraint firstItem="NTN-Ap-028" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="esZ-B9-Dgy"/>
                             <constraint firstItem="hUe-Fs-oSs" firstAttribute="top" secondItem="NTN-Ap-028" secondAttribute="bottom" constant="8" id="gNr-EH-h0y"/>
+                            <constraint firstItem="hUe-Fs-oSs" firstAttribute="centerX" secondItem="fJV-WL-AjK" secondAttribute="centerX" id="gh4-ia-ydT"/>
                             <constraint firstItem="NTN-Ap-028" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="j1s-1N-2G0"/>
+                            <constraint firstItem="szT-gf-bts" firstAttribute="centerX" secondItem="hUe-Fs-oSs" secondAttribute="centerX" id="jX1-xy-Z58"/>
                             <constraint firstItem="hUe-Fs-oSs" firstAttribute="centerX" secondItem="NTN-Ap-028" secondAttribute="centerX" id="joy-g1-Ajb"/>
+                            <constraint firstItem="hUe-Fs-oSs" firstAttribute="top" secondItem="NTN-Ap-028" secondAttribute="bottom" constant="8" id="otS-If-dnT"/>
                             <constraint firstItem="szT-gf-bts" firstAttribute="top" secondItem="hUe-Fs-oSs" secondAttribute="bottom" constant="44" id="wtP-B2-PIa"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gNr-EH-h0y"/>
+                                <exclude reference="joy-g1-Ajb"/>
+                                <exclude reference="OyM-GU-g51"/>
+                                <exclude reference="wtP-B2-PIa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="fJV-WL-AjK" id="G2O-8k-I8h"/>
+                        <outlet property="getWeatherButton" destination="szT-gf-bts" id="DaU-or-SB6"/>
                         <outlet property="tempDisplay" destination="NTN-Ap-028" id="BNh-Lo-edC"/>
                         <outlet property="tempLogo" destination="hUe-Fs-oSs" id="SlP-UP-cPK"/>
                     </connections>
